@@ -6,7 +6,7 @@ function getComputerChoice(){
 
 function playRound(playerSelection, computerSelection){
     //makes selection input not case sensitive 
-    pSelection = playerSelection.toLocaleLowerCase();
+   let pSelection = playerSelection.toLocaleLowerCase();
     
     switch(pSelection) {
         case "rock":
@@ -17,7 +17,6 @@ function playRound(playerSelection, computerSelection){
                 console.log("You Lose! Paper beats Rock");
                 return "comp";
             } else {
-                console.log("DRAW!");
                 return "draw";
             }
         break;
@@ -29,7 +28,6 @@ function playRound(playerSelection, computerSelection){
                 console.log("You Win! Paper beats Rock");
                 return "player";
             } else {
-                console.log("DRAW!");
                 return "draw";
             }
         break;
@@ -40,8 +38,7 @@ function playRound(playerSelection, computerSelection){
             } else if(computerSelection === "paper"){
                 console.log("You Win! Scissors beats Paper");
                 return "player";
-            } else {
-                console.log("DRAW!");
+            } else {            
                 return "draw";
             }
         break;
@@ -51,6 +48,31 @@ function playRound(playerSelection, computerSelection){
 
 }
 
-//function game(){
+function game(){
+    
+    let pScore = 0;
+    let cScore = 0;
 
-//}
+    for (let i = 0; i < 5; i++){
+        let playerSelection = prompt("Rock, Paper or Scissors:");
+        let winner = playRound(playerSelection, getComputerChoice())
+        
+        if (winner === "player"){
+            pScore += 1;
+        } else if (winner === "comp"){
+            cScore += 1;
+        } else {
+            console.log("DRAW!");
+        }
+    }
+
+    if (pScore > cScore){
+        console.log("Congratulations! You win the game")
+    } else if (pScore < cScore){
+        console.log("Loser! You were beat by the Computer")
+    } else {
+        console.log("Tie Game!!")
+    }
+}
+
+game();
