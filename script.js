@@ -11,68 +11,106 @@ function playRound(playerSelection, computerSelection){
     switch(pSelection) {
         case "rock":
             if (computerSelection === "scissors"){
-                    console.log("You Win! Rock beats Scissors");
-                    return "player";
+                result.textContent = "You Win! Rock beats Scissors";
+                pScore += 1
+                
             } else if(computerSelection === "paper"){
-                console.log("You Lose! Paper beats Rock");
-                return "comp";
+                result.textContent = "You Lose! Paper beats Rock";
+                cScore += 1
+                
             } else {
-                return "draw";
+                result.textContent = "DRAW!"
+                
+               
             }
         break;
         case "paper":
             if (computerSelection === "scissors"){
-                    console.log("You Lose! Scissors beats Paper");
-                    return "comp";
+                result.textContent = "You Lose! Scissors beats Paper";
+                cScore += 1  
+                
             } else if(computerSelection === "rock"){
-                console.log("You Win! Paper beats Rock");
-                return "player";
+                result.textContent = "You Win! Paper beats Rock";
+                pScore += 1
+               
             } else {
-                return "draw";
+                result.textContent = "DRAW!"
+                
             }
         break;
         case "scissors":
             if (computerSelection === "rock"){
-                    console.log("You Lose! Rock beats Scissors");
-                    return "comp";
+                result.textContent = "You Lose! Rock beats Scissors";
+                cScore += 1
+                
             } else if(computerSelection === "paper"){
-                console.log("You Win! Scissors beats Paper");
-                return "player";
+                result.textContent = "You Win! Scissors beats Paper";
+                pScore += 1
+                
             } else {            
-                return "draw";
+                result.textContent = "DRAW!"
+                
             }
         break;
         default:
-            console.log("Invaid choice");
+            console.log("Invalid choice");
     }
 
-}
+    playerScore.textContent = pScore;
+    compScore.textContent = cScore;
 
-function game(){
+    if (pScore == 5){result.textContent = "Congratulations! Your beat the Computer!!"} 
+    if (cScore == 5){result.textContent = "Loser! You couldn't even beat a computer at a child's game"}
+
+
+}
+//creating and selecting elements
+const body = document.querySelector('body');
+const result = document.createElement('div');
+const playerScore = document.createElement('p');
+const compScore = document.createElement('p');
+
+//setting score
+let pScore = 0;
+let cScore = 0;
+
+//appending elements to body of the DOM
+body.appendChild(result);
+body.appendChild(playerScore);
+body.appendChild(compScore);
+
+//selecting and adding event listeners to buttons
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach(button => button.addEventListener('click', function(){playRound(button.textContent, getComputerChoice())}));
+
+
+
+
+// function game(){
     
-    let pScore = 0;
-    let cScore = 0;
+//     let pScore = 0;
+//     let cScore = 0;
 
-    for (let i = 0; i < 5; i++){
-        let playerSelection = prompt("Rock, Paper or Scissors:");
-        let winner = playRound(playerSelection, getComputerChoice())
+//     for (let i = 0; i < 5; i++){
+//         let playerSelection = prompt("Rock, Paper or Scissors:");
+//         let winner = playRound(playerSelection, getComputerChoice())
         
-        if (winner === "player"){
-            pScore += 1;
-        } else if (winner === "comp"){
-            cScore += 1;
-        } else {
-            console.log("DRAW!");
-        }
-    }
+//         if (winner === "player"){
+//             pScore += 1;
+//         } else if (winner === "comp"){
+//             cScore += 1;
+//         } else {
+//             console.log("DRAW!");
+//         }
+//     }
 
-    if (pScore > cScore){
-        console.log("Congratulations! You win the game")
-    } else if (pScore < cScore){
-        console.log("Loser! You were beat by the Computer")
-    } else {
-        console.log("Tie Game!!")
-    }
-}
+//     if (pScore > cScore){
+//         console.log("Congratulations! You win the game")
+//     } else if (pScore < cScore){
+//         console.log("Loser! You were beat by the Computer")
+//     } else {
+//         console.log("Tie Game!!")
+//     }
+// }
 
-game();
+// game();
